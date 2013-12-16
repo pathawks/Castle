@@ -16,3 +16,7 @@
 *.exe
 *.out
 *.app
+
+# Castle data files
+CASTLE.EXE
+CASTLE.RAN
