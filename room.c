@@ -11,13 +11,6 @@ int main() {
 	FILE *file;
 	Room map[83];
 
-	// Open Map File
-	file = fopen("CASTLE.RAN", "r");
-	if (file==NULL) {
-		fputs ("File error",stderr);
-		exit (EXIT_FAILURE);
-	}
-
 	loadMap( file, map );
 
 	for (int k = 1; k < 83; k++) {
@@ -27,8 +20,6 @@ int main() {
 		system("clear");
 	}
 
-	// terminate
-	fclose (file);
 	return EXIT_SUCCESS;
 }
 
@@ -43,9 +34,15 @@ void displayRoom( int room, Room *map ) {
 }
 
 void loadMap( FILE *file, Room *map ) {
+	file = fopen("CASTLE.RAN", "r");
+	if (file==NULL) {
+		fputs ("File error",stderr);
+		exit (EXIT_FAILURE);
+	}
 	for (int k = 1; k < 83; k++) {
 		fread(map[k].map, 432, 1, file);
 		fread(map[k].description, 125, 1, file);
 		fread(map[k].nav, 18, 1, file);
 	}
+	fclose (file);
 }
