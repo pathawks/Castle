@@ -26,21 +26,11 @@ int main() {
 		fread(RoomNav[k], 18, 1, MapFile);
 
 		for (int i = 0; i < 18; i++) {
-			//loop through second dimension
-			for (int j = 0; j < 24; j++) {
-			  //print each array element.
-			  printf("%c", RoomMap[k][i][j]);
-			}
-
-			//Add newline at end to ensure each row gets printed correctly.
-			printf("\n");
+			printf("%.24s\n", &RoomMap[k][i][0]);
 		}
 
 		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 25; j++) {
-				printf("%c", RoomDescription[k][i][j]);
-			}
-			printf("\n");
+			printf("%.25s\n", &RoomDescription[k][i][0]);
 		}
 		printf("\n");
 
