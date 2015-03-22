@@ -5,8 +5,9 @@
 
 void SystemPause()
 {
+	printf("\n");
 	printf("Press Enter to continue...");
-        while (getchar() != '\n');
+    while (getchar() != '\n') {}
 }
 
 #endif

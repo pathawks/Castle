@@ -30,7 +30,6 @@ void displayRoom( int room, Room *map ) {
 	for (int i = 0; i < 5; i++) {
 		printf("%.25s\n", &map[room].description[i][0]);
 	}
-	printf("\n");
 }
 
 void loadMap( FILE *file, Room *map ) {
