@@ -4,41 +4,48 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "room.h"
 #include "systempause.h"
 
 int main() {
-	FILE * MapFile;
+	FILE *file;
+	Room map[83];
 
 	// Open Map File
-	MapFile = fopen("CASTLE.RAN", "r");
-	if (MapFile==NULL) {
+	file = fopen("CASTLE.RAN", "r");
+	if (file==NULL) {
 		fputs ("File error",stderr);
 		exit (EXIT_FAILURE);
 	}
 
-	char RoomMap[83][18][24];
-	char RoomDescription[83][5][25];
-	char RoomNav[83][18];
+	loadMap( file, map );
 
 	for (int k = 1; k < 83; k++) {
-		fread(RoomMap[k], 432, 1, MapFile);
-		fread(RoomDescription[k], 125, 1, MapFile);
-		fread(RoomNav[k], 18, 1, MapFile);
-
-		for (int i = 0; i < 18; i++) {
-			printf("%.24s\n", &RoomMap[k][i][0]);
-		}
-
-		for (int i = 0; i < 5; i++) {
-			printf("%.25s\n", &RoomDescription[k][i][0]);
-		}
-		printf("\n");
+		displayRoom(k, map);
 
 		SystemPause();
 		system("clear");
 	}
 
 	// terminate
-	fclose (MapFile);
+	fclose (file);
 	return EXIT_SUCCESS;
+}
+
+void displayRoom( int room, Room *map ) {
+	for (int i = 0; i < 18; i++) {
+		printf("%.24s\n", &map[room].map[i][0]);
+	}
+	for (int i = 0; i < 5; i++) {
+		printf("%.25s\n", &map[room].description[i][0]);
+	}
+	printf("\n");
+}
+
+void loadMap( FILE *file, Room *map ) {
+	for (int k = 1; k < 83; k++) {
+		fread(map[k].map, 432, 1, file);
+		fread(map[k].description, 125, 1, file);
+		fread(map[k].nav, 18, 1, file);
+	}
 }
