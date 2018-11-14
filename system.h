@@ -1,13 +1,15 @@
-#ifndef SYSTEM_PAUSE_H
-#define SYSTEM_PAUSE_H
+#ifndef SYSTEM_H
+#define SYSTEM_H
 
 #include <stdio.h>
 
-void SystemPause()
-{
-	printf("\n");
-	printf("Press Enter to continue...");
-    while (getchar() != '\n') {}
+void SystemPause() {
+	puts("\nPress Enter to continue...");
+	while (getchar() != '\n') {}
+}
+
+void SystemClear() {
+	system("clear");
 }
 
 #endif

@@ -14,7 +14,7 @@ int main() {
 	loadMap( file, map );
 
 	for (Room *m=map,*end=map+82; m<end; ++m) {
-		system("clear");
+		SystemClear();
 		displayRoom(m);
 		SystemPause();
 	}
