@@ -34,8 +34,8 @@ void displayRoom( Room *map ) {
 void loadMap( FILE *file, Room *map ) {
 	file = fopen("CASTLE.RAN", "r");
 	if (file==NULL) {
-		fputs ("File error",stderr);
-		exit (EXIT_FAILURE);
+		fputs("File error\n",stderr);
+		exit(EXIT_FAILURE);
 	}
 	for (Room *m=map,*end=map+82; m<end; ++m) {
 		fread(m->map, 432, 1, file);
