@@ -34,11 +34,12 @@ void displayRoom( Room *map ) {
 }
 
 void loadMap( FILE *file, Room *map ) {
-	for (Room *m=map,*end=map+82; m<end; ++m) {
-		fread(m->map, 432, 1, file);
-		fread(m->description, 125, 1, file);
-		fread(m->nav, 18, 1, file);
-	}
+//	for (Room *m=map,*end=map+82; m<end; ++m) {
+//		fread(m->map, 18*24, 1, file);
+//		fread(m->description, 5*25, 1, file);
+//		fread(m->nav, 18, 1, file);
+//	}
+	fread(map, (18*24+5*25+18)*82, 1, file);
 }
 
 FILE* openMap( char* name ) {
