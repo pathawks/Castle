@@ -7,7 +7,7 @@ typedef struct{
 	char nav[18];
 } Room;
 
-void displayRoom( int room, Room *map );
+void displayRoom( Room *map );
 void loadMap( FILE *file, Room *map );
 
 #endif

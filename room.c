@@ -9,26 +9,25 @@
 
 int main() {
 	FILE *file;
-	Room map[83];
+	Room map[82];
 
 	loadMap( file, map );
 
-	for (int k = 1; k < 83; k++) {
-		displayRoom(k, map);
-
-		SystemPause();
+	for (Room *m=map,*end=map+82; m<end; ++m) {
 		system("clear");
+		displayRoom(m);
+		SystemPause();
 	}
 
 	return EXIT_SUCCESS;
 }
 
-void displayRoom( int room, Room *map ) {
-	for (int i = 0; i < 18; i++) {
-		printf("%.24s\n", &map[room].map[i][0]);
+void displayRoom( Room *map ) {
+	for (int i = 0; i < 18; ++i) {
+		printf("%.24s\n", map->map[i]);
 	}
-	for (int i = 0; i < 5; i++) {
-		printf("%.25s\n", &map[room].description[i][0]);
+	for (int i = 0; i < 5; ++i) {
+		printf("%.25s\n", map->description[i]);
 	}
 }
 
@@ -38,10 +37,10 @@ void loadMap( FILE *file, Room *map ) {
 		fputs ("File error",stderr);
 		exit (EXIT_FAILURE);
 	}
-	for (int k = 1; k < 83; k++) {
-		fread(map[k].map, 432, 1, file);
-		fread(map[k].description, 125, 1, file);
-		fread(map[k].nav, 18, 1, file);
+	for (Room *m=map,*end=map+82; m<end; ++m) {
+		fread(m->map, 432, 1, file);
+		fread(m->description, 125, 1, file);
+		fread(m->nav, 18, 1, file);
 	}
 	fclose (file);
 }
