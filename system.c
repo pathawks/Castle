@@ -8,5 +8,5 @@ void SystemPause() {
 }
 
 void SystemClear() {
-	system("clear");
+	fputs("\033[2J\033[H", stdout);
 }
