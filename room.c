@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "room.h"
-#include "systempause.h"
+#include "system.h"
 
 int main() {
 	FILE *file;
