@@ -24,10 +24,12 @@ int main() {
 
 void displayRoom( Room *map ) {
 	for (int i = 0; i < 18; ++i) {
-		printf("%.24s\n", map->map[i]);
+		fwrite(map->map[i], 24, 1, stdout);
+		fputc('\n', stdout);
 	}
 	for (int i = 0; i < 5; ++i) {
-		printf("%.25s\n", map->description[i]);
+		fwrite(map->description[i], 25, 1, stdout);
+		fputc('\n', stdout);
 	}
 }
 
