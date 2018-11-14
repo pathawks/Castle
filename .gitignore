@@ -16,6 +16,7 @@
 *.exe
 *.out
 *.app
+room
 
 # Castle data files
 CASTLE.EXE
