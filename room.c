@@ -8,10 +8,10 @@
 #include "system.h"
 
 int main() {
-	FILE *file;
 	Room map[82];
-
+	FILE *file = openMap("CASTLE.RAN");
 	loadMap( file, map );
+	fclose (file);
 
 	for (Room *m=map,*end=map+82; m<end; ++m) {
 		SystemClear();
@@ -34,15 +34,18 @@ void displayRoom( Room *map ) {
 }
 
 void loadMap( FILE *file, Room *map ) {
-	file = fopen("CASTLE.RAN", "r");
-	if (file==NULL) {
-		fputs("File error\n",stderr);
-		exit(EXIT_FAILURE);
-	}
 	for (Room *m=map,*end=map+82; m<end; ++m) {
 		fread(m->map, 432, 1, file);
 		fread(m->description, 125, 1, file);
 		fread(m->nav, 18, 1, file);
 	}
-	fclose (file);
+}
+
+FILE* openMap( char* name ) {
+	FILE *file = fopen(name, "r");
+	if (file==NULL) {
+		fputs("File error\n",stderr);
+		exit(EXIT_FAILURE);
+	}
+	return file;
 }
