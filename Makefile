@@ -4,5 +4,6 @@ clean:
 	rm -f room *.o
 
 room.o: room.c room.h system.h
+system.o: system.c system.h
 
-room: room.o
+room: room.o system.o
